@@ -2,6 +2,16 @@ using RickAndMortyAPIBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin() // Permite cualquier origen
+               .AllowAnyMethod() // Permite cualquier método (GET, POST, etc.)
+               .AllowAnyHeader(); // Permite cualquier cabecera
+    });
+});
+
 builder.Services.AddHttpClient<RickAndMortyApiService>();
 builder.Services.AddScoped<RickAndMortyApiService>();
 
